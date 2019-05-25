@@ -4,7 +4,7 @@
 ; Run with: ./helloworld-len
  
 SECTION .data
-msg     db      'Hello, brave new world!', 0Ah
+msg     db      'Waddup', 0Ah
  
 SECTION .text
 global  _start
@@ -14,17 +14,18 @@ _start:
     mov     rax, msg        ; move the address of msg in to rax
     call    strlen          ; call calculate length of msg by calling subroutine strlen
 
+    mov     rdx, rax        ; strlen subroutine stores string length in rax
     mov     rax, 1          ; opcode for sys_write
     mov     rdi, 1          ; file descriptor
     mov     rsi, msg        ; char* buffer
-    mov     rdx, rax        ; strlen 
+
     syscall
  
     mov     rax, 60         ; opcode for sys_exit
     mov     rdi, 0          ; error code on sys_exit
     syscall
 
-strlen:                     ; this is our first function declaration
+strlen:                     
     push    rdi             ; push the value in rdi onto the stack to preserve it while we use rdi in this function
     mov     rdi, rax        ; move the address in rax into rdi (Both point to the same segment in memory)
  
