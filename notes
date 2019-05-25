@@ -2,6 +2,7 @@ https://asmtutor.com/#lesson1
 https://cs.lmu.edu/~ray/notes/nasmtutorial/
 https://www.informatik.htw-dresden.de/~beck/ASM/syscall_list.html
 https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+https://en.wikibooks.org/wiki/X86_Disassembly/Branches
 
     The 64 bit wide registers are: 
 ;R0  R1  R2  R3  R4  R5  R6  R7  R8  R9  R10  R11  R12  R13  R14  R15
@@ -26,4 +27,8 @@ For x86
 %eax    %ebx    %ecx    %edx    %esx    %edu
 use int 80h for system interrupt
 
+Section .data - constant data
+Section .text - code
 
+
+byte[rax] - rax points to a byte sized variable

@@ -1,0 +1,4 @@
+mov     dst,    src     - move the contents of src to dst
+jz      label           - jump to label if zero flag to 1 (in MIPS architecture check a register instead of zero flag)
+cmp     src1,   dst2    - compare src1 to src2. If equal set the zero flag; else reset zero flag
+
