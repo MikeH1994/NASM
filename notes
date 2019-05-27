@@ -3,16 +3,25 @@ https://cs.lmu.edu/~ray/notes/nasmtutorial/
 https://www.informatik.htw-dresden.de/~beck/ASM/syscall_list.html
 https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
 https://en.wikibooks.org/wiki/X86_Disassembly/Branches
+https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
 
-
+for 64 bit mode
 Compile with: nasm -f elf64 xxx.asm
 Link with ld xxx.o
+for 32 bit mode
+nasm -f elf xxx.asm
+ld -m elf_i386 xxx.o -o xxx
 
     The 64 bit wide registers are: 
 ;RAX RCX RDX RBX RSP RBP RSI RDI R8 ... R15
 
     The lowest 32-bits of each register are accessed using:
 ;EAX ECX EDX EBX ESP EBP ESI EDI
+
+     AL/AH, CL/CH,  DL/DH,  BL/BH,  SPL,    BPL,    SIL,    DIL, R8B-R15B 
+     AX,    CX,     DX,     BX,     SP,     BP,     SI,     DI, R8W-R15W 
+     EAX,   ECX,    EDX,    EBX,    ESP,    EBP,    ESI,    EDI, R8D-R15D 
+     RAX,   RCX,    RDX,    RBX,    RSP,    RBP,    RSI,    RDI, R8-R15
 
 For x86
 %eax    %ebx    %ecx    %edx    %esx    %edu
@@ -22,8 +31,12 @@ For x86_64,
 %rax    %rdi    %rsi    %rdx    %r10    %r8     %r9
 use syscall for system interrupt
 
+%rax, %r10, %r11 destroyed by system calls
+
 Section .data - constant data
 Section .text - code
 
-
 byte[rax] - rax points to a byte sized variable
+
+By convention, ​%rax​ is used to store a function’s return value, if it exists and is no morethan 64 bits long.
+Register​​%rsp​ is used as the ​stack pointer​, a pointer to the topmost element in the stack

@@ -36,13 +36,28 @@ sprint:
  
     mov     rsi, rax    ; move char* to rsi
     mov     rdi, 1      ; set fd to 1
-    mov     rax, 4      ; set opcode to 4 (sys_write)
+    mov     rax, 1      ; set opcode to 4 (sys_write)
     syscall
                 
     pop     rdi         ; pop elements in stack in reverse order
     pop     rsi
     pop     rdx
     ret
+ 
+;------------------------------------------
+; void sprintLF(String message)
+; String printing with line feed function
+sprintLF:
+    call    sprint
+ 
+    push    rax         ; push rax onto the stack to preserve it while we use the rax register in this function
+    mov     rax, 0Ah    ; move linefeed character to 0Ah
+    push    rax         ; push 0Ah on to stack
+    mov     rax, rsp    ; move the address of the current stack pointer into rax for sprint
+    call    sprint      ; call our sprint function
+    pop     rax         ; remove our linefeed character from the stack
+    pop     rax         ; restore the original value of eax before our function was called
+    ret                 ; return to our program
  
  
 ;------------------------------------------
