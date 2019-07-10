@@ -1,4 +1,12 @@
 mov     dst,    src     - move the contents of src to dst
-jz      label           - jump to label if zero flag to 1 (in MIPS architecture check a register instead of zero flag)
-cmp     src1,   dst2    - compare src1 to src2. If equal set the zero flag; else reset zero flag
+
+cmp     src1,   src2    - compare src1 to src2. If equal set the zero flag; else reset zero flag
+lt      src1,   src2
 sub     src1,   src2    - set src1-=src2
+idiv    src             - integer division- divide rax by src- remainder stored in rdx
+imul    src             - integer multiply- multiply rax by src
+
+
+jz      label           - jump to label if zero flag to 1 (in MIPS architecture check a register instead of zero flag)
+jl      label           - jump if less than
+jne     label           - jump to label if zero flag not 1
